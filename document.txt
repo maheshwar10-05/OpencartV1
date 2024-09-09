@@ -1,2 +1,3 @@
 this is the new document
 "Hello world"
+this is the modification
