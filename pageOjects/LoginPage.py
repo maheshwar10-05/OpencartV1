@@ -9,6 +9,8 @@ class LoginPage():
     message = "//h2[normalize-space()='My Account']"
     error_message = "//div[@class='alert alert-danger alert-dismissible']"
     out_message = "//h1[normalize-space()='Account Logout']"
+    forgotten_link = "//div[@class='form-group']//a[contains(text(),'Forgotten Password')]"
+    forg_message = "//h1[normalize-space()='Forgot Your Password?']"
 
     def __init__(self, driver):
         self.driver = driver
@@ -35,3 +37,8 @@ class LoginPage():
     def login_out(self):
         conf_out = self.driver.find_element(By.XPATH, self.out_message)
         return conf_out.text
+    def forgot_pass(self):
+        self.driver.find_element(By.XPATH,self.forgotten_link).click()
+
+    def conf_forgotten(self):
+        return self.driver.find_element(By.XPATH,self.forg_message).text
