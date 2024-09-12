@@ -12,6 +12,7 @@ class LoginPage():
     forgotten_link = "//div[@class='form-group']//a[contains(text(),'Forgotten Password')]"
     forg_message = "//h1[normalize-space()='Forgot Your Password?']"
 
+
     def __init__(self, driver):
         self.driver = driver
 
