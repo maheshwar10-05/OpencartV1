@@ -13,6 +13,7 @@ class LoginPage():
     forg_message = "//h1[normalize-space()='Forgot Your Password?']"
 
 
+
     def __init__(self, driver):
         self.driver = driver
 
@@ -43,3 +44,7 @@ class LoginPage():
 
     def conf_forgotten(self):
         return self.driver.find_element(By.XPATH,self.forg_message).text
+
+
+
+
