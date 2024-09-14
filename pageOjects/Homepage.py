@@ -10,7 +10,7 @@ class Home:
     txt_logout = "(//a[normalize-space()='Logout'])[1]"
     txt_search_bar = "//input[@placeholder='Search']"
     clk_search = "//button[@class='btn btn-default btn-lg']"
-    dis_product = "//a[normalize-space()='Samsung Galaxy Tab 10.1']"
+    dis_product,dis_non = "//a[normalize-space()='Samsung Galaxy Tab 10.1']","//p[contains(text(),'There is no product that matches the search criter')]"
     def __init__(self, driver):
         self.driver = driver
 
@@ -34,4 +34,6 @@ class Home:
 
     def product_dis(self):
         return self.driver.find_element(By.XPATH,self.dis_product).text
+    def non_existing(self):
+        return self.driver.find_element(By.XPATH,self.dis_non).text
 
