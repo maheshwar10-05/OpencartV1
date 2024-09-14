@@ -6,7 +6,6 @@ import string
 import time
 from pageOjects.Homepage import Home
 from pageOjects.LoginPage import LoginPage
-from pageOjects.MyAccountPage import MyAccountPage
 from utilities import randomString
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
