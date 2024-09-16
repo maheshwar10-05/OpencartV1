@@ -1,30 +1,23 @@
-import os.path
-import time
-from selenium import webdriver
-import pytest
-import string
-import time
-from pageOjects.Homepage import Home
-from pageOjects.LoginPage import LoginPage
 from pageOjects.Search import Search
-from utilities import randomString
-from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_search():
+from utilities.readProperties import ReadConfig
+
+
+class Test_Validpage():
     baseURL = ReadConfig.getApplicationURL()
     logger = LogGen.loggen()
-    def test_search(self,setup):
+
+    def test_page_valid(self, setup):
         self.logger.info("*** Test_001 started ***")
         self.driver = setup
         self.driver.get(self.baseURL)
         self.logger.info("launching application")
         self.driver.maximize_window()
         self.srch = Search(self.driver)
-        self.srch.search_existing("Fitbit")
         self.srch.search_button()
-        if self.srch.non_existing() == "There is no product that matches the search criteria.":
+        self.page = self.srch.valid_page_verify()
+        if self.page == [('Search', 'https://tutorialsninja.com/demo/index.php?route=product/search', 'Search')]:
             assert True
         else:
             assert False
-        self.driver.close()

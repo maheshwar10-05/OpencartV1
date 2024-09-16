@@ -6,6 +6,7 @@ import string
 import time
 from pageOjects.Homepage import Home
 from pageOjects.LoginPage import LoginPage
+from pageOjects.Search import Search
 from utilities import randomString
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
@@ -19,10 +20,10 @@ class Test_search():
         self.driver.get(self.baseURL)
         self.logger.info("launching application")
         self.driver.maximize_window()
-        self.hp = Home(self.driver)
-        self.hp.search_existing("Samsung Galaxy Tab 10.1")
-        self.hp.search_button()
-        if self.hp.product_dis() == "Samsung Galaxy Tab 10.1":
+        self.srch = Search(self.driver)
+        self.srch.search_existing("iMac")
+        self.srch.search_button()
+        if self.srch.product_dis() == "iMac":
             assert True
         else:
             assert False

@@ -8,11 +8,9 @@ class Home:
     txt_register = "//a[normalize-space()='Register']"
     txt_login = "//a[normalize-space()='Login']"
     txt_logout = "(//a[normalize-space()='Logout'])[1]"
-    txt_search_bar = "//input[@placeholder='Search']"
-    clk_search = "//button[@class='btn btn-default btn-lg']"
-    dis_product,dis_non = "//a[normalize-space()='Samsung Galaxy Tab 10.1']","//p[contains(text(),'There is no product that matches the search criter')]"
     def __init__(self, driver):
         self.driver = driver
+
 
     def clickaccount(self):
         self.driver.find_element(By.XPATH, self.txt_account).click()
@@ -25,15 +23,7 @@ class Home:
     def clicklogout(self):
         self.driver.find_element(By.XPATH,self.txt_logout).click()
 
-    def search_existing(self,product):
-        product_text = self.driver.find_element(By.XPATH,self.txt_search_bar)
-        product_text.send_keys(product)
 
-    def search_button(self):
-        self.driver.find_element(By.XPATH,self.clk_search).click()
 
-    def product_dis(self):
-        return self.driver.find_element(By.XPATH,self.dis_product).text
-    def non_existing(self):
-        return self.driver.find_element(By.XPATH,self.dis_non).text
+
 

@@ -11,19 +11,26 @@ from utilities import randomString
 from utilities.readProperties import ReadConfig
 from utilities.customLogger import LogGen
 
-class Test_search():
+class Test_loginsearch():
     baseURL = ReadConfig.getApplicationURL()
     logger = LogGen.loggen()
-    def test_search(self,setup):
+    def test_login_search(self,setup):
         self.logger.info("*** Test_001 started ***")
         self.driver = setup
         self.driver.get(self.baseURL)
         self.logger.info("launching application")
         self.driver.maximize_window()
+        self.hp = Home(self.driver)
+        self.hp.clickaccount()
+        self.hp.clicklogin()
+        self.logpage = LoginPage(self.driver)
+        self.logpage.login_email("itachi123456@gmail.com")
+        self.logpage.login_password("Naruto@12345")
+        self.logpage.click()
         self.srch = Search(self.driver)
-        self.srch.search_existing("Fitbit")
+        self.srch.search_existing("iMac")
         self.srch.search_button()
-        if self.srch.non_existing() == "There is no product that matches the search criteria.":
+        if self.srch.product_dis() == "iMac":
             assert True
         else:
             assert False
