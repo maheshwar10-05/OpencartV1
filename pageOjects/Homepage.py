@@ -47,7 +47,9 @@ class Home:
         self.driver.find_element(By.XPATH,self.compare_link).click()
         y = self.driver.find_element(By.XPATH,self.not_chosen).text
         self.driver.find_element(By.XPATH,self.btn_continue).click()
-        return y,self.driver.title
+        z = self.driver.title
+        print(y,z)
+        return y,z
 
 
 

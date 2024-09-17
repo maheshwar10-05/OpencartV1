@@ -112,9 +112,9 @@ class Search:
 
     def product_link_detail(self):
         self.driver.find_element(By.XPATH, self.prouct_link).click()
-        x = self.driver.find_element(By.XPATH, self.product_details).text
-        print(x)
-        return x
+        # x = self.driver.find_element(By.XPATH, self.product_details).text
+        # print(x)
+        # return x
 
     def list_view(self):
         self.driver.find_element(By.XPATH, self.listview).click()
@@ -141,3 +141,24 @@ class Search:
         y = self.driver.find_element(By.XPATH, self.success_text).text
         print(tooltip_text,y)
         return tooltip_text, y
+
+    def two_prod_display(self):
+        element_hover = self.driver.find_element(By.XPATH, self.com_prod)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element_hover).click().perform()
+        self.driver.find_element(By.XPATH,self.txt_search_bar).clear()
+
+    def table(self):
+        empty =[]
+        for c in range(1,4):
+            table_data = "//tbody[1]/tr[1]/td[" + str(c) + "]"
+            y = self.driver.find_element(By.XPATH,table_data).text
+
+            empty.append(y)
+        print(empty)
+        return empty
+
+
+
+
+
