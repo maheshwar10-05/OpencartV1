@@ -2,7 +2,11 @@ import time
 
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.select import Select
+from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver import ActionChains
+from selenium.webdriver.support import expected_conditions as EC
+
+
 
 
 class Search:
@@ -27,6 +31,10 @@ class Search:
     product_details = "//td[@colspan='2']//strong[text()='Product Details']"
     listview = "//button[@id='list-view']"
     gridview = "//button[@id='grid-view']"
+    add_cart = "//input[@value='Add to Cart']"
+    message_success = "/html[1]/body[1]/div[2]/div[1]"
+    cross_button ="//button[text()='×']"
+
 
     def __init__(self, driver):
         self.driver = driver
@@ -157,6 +165,27 @@ class Search:
             empty.append(y)
         print(empty)
         return empty
+
+    def add_cart_product(self):
+        self.driver.find_element(By.XPATH,self.add_cart).click()
+        # y = self.driver.find_element(By.XPATH, self.message_success).text
+        # return y
+
+    def sucess_shopping_message(self):
+        mywait = WebDriverWait(self.driver, 20)
+        y = mywait.until(EC.presence_of_element_located(self.driver.find_element(By.XPATH,self.message_success))).text
+        z = self.driver.find_element(By.XPATH,self.cross_button).text
+        print(y,z)
+        return y,z
+
+    def add_shopping(self):
+        self.driver.find_element(By.XPATH, self.listview).click()
+        self.driver.execute_script("window.scrollTo(0, document.body.scrollHeight);")
+        element_hover = self.driver.find_element(By.XPATH, self.com_prod)
+        actions = ActionChains(self.driver)
+        actions.move_to_element(element_hover).click().perform()
+
+
 
 
 
